@@ -12,10 +12,10 @@ finish.hideturtle()
 finish.pencolor("black")
 finish.setheading(90)
 finish.penup()
-finish.goto(x=210, y=-200)
+finish.goto(x=210, y=-170)
 finish.pendown()
 finish.pensize(10)
-finish.forward(400)
+finish.forward(340)
 
 colours = ["blue", "red", "green", "yellow", "orange", "purple"]
 all_turtles = []
@@ -31,8 +31,6 @@ for new_turtle in colours:
     i += 1
     y += 50
 
-
-
 if user_bet:
     is_race_on = True
 
@@ -43,18 +41,10 @@ while is_race_on:
             print("Race finished!")
             winning_colour = turtle.pencolor()
             is_race_on = False
-            if user_bet == turtle:
+            if user_bet == winning_colour:
                 print("You won!")
             else:
                 print(f"You lost, {winning_colour} turtle won the race.")
         turtle.forward(random.randint(0, 10))
-
-
-
-
-
-
-
-
 
 my_screen.exitonclick()
