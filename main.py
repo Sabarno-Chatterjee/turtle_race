@@ -7,7 +7,6 @@ my_screen.setup(width=500, height=400)
 user_bet = my_screen.textinput(title="Make your bet.", prompt="Which turtle will win?")
 
 
-# print(user_bet)
 def finish_line():
     finish = t()
     finish.hideturtle()
@@ -21,36 +20,38 @@ def finish_line():
     finish.speed(0)
 
 
-starting_spec = 20
+def spectators(x_position, y_position, direction):
+    for spectator in range(4):
+        tim = t(shape="turtle")
+        tim.speed(0)
+        tim.hideturtle()
+        tim.penup()
+        tim.goto(x=x_position, y=y_position)
+        tim.setheading(direction)
+        tim.showturtle()
+        x_position += 35
 
 
-# def spectators():
-for spectator in range(4):
-    tim = t(shape="turtle")
-    tim.hideturtle()
-    tim.penup()
-    tim.goto(x=starting_spec, y=-180)
-    tim.setheading(90)
-    tim.showturtle()
-    starting_spec += 35
-
-
-
+spectators(x_position=20, y_position=-170, direction=90)
+spectators(x_position=20, y_position=170, direction=270)
 finish_line()
 colours = ["blue", "red", "green", "yellow", "orange", "purple"]
 all_turtles = []
-i = 0
-x = -230
-y = -125
-for new_turtle in colours:
-    colours[i] = t(shape="turtle")
-    colours[i].color(new_turtle)
-    colours[i].penup()
-    colours[i].goto(x=x, y=y)
-    all_turtles.append(colours[i])
-    i += 1
-    y += 50
 
+
+def generate_turtles(turtle_count, starting_position):
+    for new_turtle in colours:
+        colours[turtle_count] = t(shape="turtle")
+        colours[turtle_count].speed("fastest")
+        colours[turtle_count].color(new_turtle)
+        colours[turtle_count].penup()
+        colours[turtle_count].goto(x=-230, y=starting_position)
+        all_turtles.append(colours[turtle_count])
+        turtle_count += 1
+        starting_position += 50
+
+
+generate_turtles(turtle_count=0, starting_position=-125)
 if user_bet:
     is_race_on = True
 
